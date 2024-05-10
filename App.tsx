@@ -1,27 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
-  const handleClick = () => {
-    Alert.alert('Button clicked');
-  };
   return (
-    <View style={styles.container}>
-      <View>
-        <Text>another text</Text>
+    <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.textInput} placeholder='너의 목표는 뭐니?!' />
+        <Button title='이뤄봐!' />
       </View>
-      <Text>Hello Worl!</Text>
-      <Button title='Click me' onPress={handleClick} />
-      <StatusBar style='auto' />
+      <View>
+        <Text>너의 목표들이야!</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  appContainer: {
+    padding: 50,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  textInput: {
+    width: '80%',
+    borderColor: '#cccccc',
+    borderWidth: 1,
+    borderRadius: 4,
+    padding: 8,
+    marginRight: 8,
   },
 });
