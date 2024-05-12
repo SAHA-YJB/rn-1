@@ -7,7 +7,7 @@ export default function App() {
         <TextInput style={styles.textInput} placeholder='너의 목표는 뭐니?!' />
         <Button title='이뤄봐!' />
       </View>
-      <View>
+      <View style={styles.listContainer}>
         <Text>너의 목표들이야!</Text>
       </View>
     </View>
@@ -16,15 +16,18 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
-    padding: 50,
-    marginTop: 20,
-    width: '100%',
-    justifyContent: 'center',
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 16,
   },
   inputContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
   },
   textInput: {
     width: '80%',
@@ -33,5 +36,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 8,
     marginRight: 8,
+  },
+  listContainer: {
+    flex: 7,
   },
 });
