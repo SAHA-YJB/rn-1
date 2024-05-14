@@ -1,16 +1,30 @@
+import React from 'react';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Button,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+
+type ListType = { text: string; key?: string; id?: string };
 
 export default function App() {
   const [enteredText, setEnteredText] = useState('');
-  const [lists, setLists] = useState<string[]>([]);
+  const [lists, setLists] = useState<ListType[]>([]);
 
   const listInputHandler = (inputText: string) => {
     setEnteredText(inputText);
   };
 
   const addListHandler = () => {
-    setLists((currentList) => [enteredText, ...currentList]);
+    setLists((currentList) => [
+      { text: enteredText, id: Math.random().toString() },
+      ...currentList,
+    ]);
   };
 
   return (
@@ -24,11 +38,16 @@ export default function App() {
         <Button title='이뤄봐!' onPress={addListHandler} />
       </View>
       <View style={styles.listContainer}>
-        {lists.map((list, i) => (
-          <View key={i} style={styles.listItem}>
-            <Text>{list}</Text>
-          </View>
-        ))}
+        <FlatList
+          data={lists}
+          renderItem={(listData) => (
+            <View style={styles.listItem}>
+              <Text>{listData.item.text}</Text>
+            </View>
+          )}
+          alwaysBounceVertical={false}
+          keyExtractor={(item) => item.id!}
+        />
       </View>
     </View>
   );
