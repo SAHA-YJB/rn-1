@@ -1,14 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
-import {
-  Button,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import React, { useState } from 'react';
+import { Button, FlatList, StyleSheet, TextInput, View } from 'react-native';
+import ListItem from './src/components/ListItem';
 
 type ListType = { text: string; key?: string; id?: string };
 
@@ -40,11 +32,11 @@ export default function App() {
       <View style={styles.listContainer}>
         <FlatList
           data={lists}
-          renderItem={(listData) => (
-            <View style={styles.listItem}>
-              <Text>{listData.item.text}</Text>
-            </View>
-          )}
+          renderItem={(listData) => {
+            return (
+              <ListItem text={listData.item.text} id={listData.item.id!} />
+            );
+          }}
           alwaysBounceVertical={false}
           keyExtractor={(item) => item.id!}
         />
