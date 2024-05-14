@@ -12,10 +12,6 @@ const ListInput: FC<ListInputProps> = ({ addListHandler }) => {
     setEnteredText(inputText);
   };
 
-  const addListHandlerInput = () => {
-    addListHandler(enteredText);
-    setEnteredText('');
-  };
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -24,7 +20,13 @@ const ListInput: FC<ListInputProps> = ({ addListHandler }) => {
         onChangeText={listInputHandler}
         value={enteredText}
       />
-      <Button title='이뤄봐!' onPress={addListHandlerInput} />
+      <Button
+        title='이뤄봐!'
+        onPress={() => {
+          addListHandler(enteredText);
+          setEnteredText('');
+        }}
+      />
     </View>
   );
 };

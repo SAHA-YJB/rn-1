@@ -1,16 +1,23 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 interface ListItemProps {
   text: string;
   id: string | number;
+  removeListHandler: (listId: string) => void;
 }
 
-const ListItem: FC<ListItemProps> = ({ text, id }) => {
+const ListItem: FC<ListItemProps> = ({ text, id, removeListHandler }) => {
   return (
-    <View style={styles.listItem}>
-      <Text>{text}</Text>
-    </View>
+    <Pressable
+      onPress={() => {
+        removeListHandler(id.toString());
+      }}
+    >
+      <View style={styles.listItem}>
+        <Text>{text}</Text>
+      </View>
+    </Pressable>
   );
 };
 

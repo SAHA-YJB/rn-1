@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Button, FlatList, StyleSheet, TextInput, View } from 'react-native';
+import {
+  Alert,
+  Button,
+  FlatList,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import ListItem from './src/components/ListItem';
 import ListInput from './src/components/ListInput';
 
@@ -9,10 +16,19 @@ export default function App() {
   const [lists, setLists] = useState<ListType[]>([]);
 
   const addListHandler = (enteredText: string) => {
+    if (enteredText === '') {
+      return Alert.alert('목표를 입력해주세요!');
+    }
     setLists((currentList) => [
       { text: enteredText, id: Math.random().toString() },
       ...currentList,
     ]);
+  };
+
+  const removeListHandler = (listId: string) => {
+    setLists((currentList) => {
+      return currentList.filter((list) => list.id !== listId);
+    });
   };
 
   return (
@@ -23,7 +39,11 @@ export default function App() {
           data={lists}
           renderItem={(listData) => {
             return (
-              <ListItem text={listData.item.text} id={listData.item.id!} />
+              <ListItem
+                text={listData.item.text}
+                id={listData.item.id!}
+                removeListHandler={removeListHandler}
+              />
             );
           }}
           alwaysBounceVertical={false}
