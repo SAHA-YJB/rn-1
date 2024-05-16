@@ -8,7 +8,9 @@ interface ListItemProps {
 }
 
 const ListItem: FC<ListItemProps> = ({ text, id, removeListHandler }) => {
+  // 컴포넌트의 렌더링 부분입니다.
   return (
+    // Pressable 컴포넌트를 사용하여 클릭 가능한 리스트 아이템을 생성
     <Pressable
       onPress={() => {
         removeListHandler(id.toString());

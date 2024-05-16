@@ -21,6 +21,7 @@ const ListInput: FC<ListInputProps> = ({
 }) => {
   const [enteredText, setEnteredText] = useState('');
 
+  // 입력된 텍스트를 상태에 설정하는 핸들러 함수
   const listInputHandler = (inputText: string) => {
     setEnteredText(inputText);
   };
