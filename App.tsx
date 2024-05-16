@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import ListItem from './src/components/ListItem';
 import ListInput from './src/components/ListInput';
+import { StatusBar } from 'expo-status-bar';
 
 type ListType = { text: string; key?: string; id?: string };
 
@@ -24,6 +25,8 @@ export default function App() {
       { text: enteredText, id: Math.random().toString() },
       ...currentList,
     ]);
+
+    setModalVisible(!modalVisible);
   };
 
   const removeListHandler = (listId: string) => {
@@ -33,32 +36,35 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      <Button title='이뤄봐!' onPress={() => setModalVisible(true)} />
-      {modalVisible && (
-        <ListInput
-          visible={modalVisible}
-          setModalVisible={setModalVisible}
-          addListHandler={addListHandler}
-        />
-      )}
-      <View style={styles.listContainer}>
-        <FlatList
-          data={lists}
-          renderItem={(listData) => {
-            return (
-              <ListItem
-                text={listData.item.text}
-                id={listData.item.id!}
-                removeListHandler={removeListHandler}
-              />
-            );
-          }}
-          alwaysBounceVertical={false}
-          keyExtractor={(item) => item.id!}
-        />
+    <>
+      <StatusBar style='auto' />
+      <View style={styles.appContainer}>
+        <Button title='이뤄봐!' onPress={() => setModalVisible(true)} />
+        {modalVisible && (
+          <ListInput
+            visible={modalVisible}
+            setModalVisible={setModalVisible}
+            addListHandler={addListHandler}
+          />
+        )}
+        <View style={styles.listContainer}>
+          <FlatList
+            data={lists}
+            renderItem={(listData) => {
+              return (
+                <ListItem
+                  text={listData.item.text}
+                  id={listData.item.id!}
+                  removeListHandler={removeListHandler}
+                />
+              );
+            }}
+            alwaysBounceVertical={false}
+            keyExtractor={(item) => item.id!}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -67,6 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+    backgroundColor: '#f0f0f0',
   },
   listContainer: {
     flex: 7,

@@ -1,5 +1,12 @@
 import React, { FC, useState } from 'react';
-import { Button, Modal, StyleSheet, TextInput, View } from 'react-native';
+import {
+  Button,
+  Image,
+  Modal,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 
 interface ListInputProps {
   addListHandler: (enteredText: string) => void;
@@ -21,6 +28,10 @@ const ListInput: FC<ListInputProps> = ({
   return (
     <Modal visible={visible} animationType='slide'>
       <View style={styles.inputContainer}>
+        <Image
+          style={styles.image}
+          source={require('../../assets/images/goal.png')}
+        />
         <TextInput
           style={styles.textInput}
           placeholder='너의 목표는 뭐니?!'
@@ -37,6 +48,7 @@ const ListInput: FC<ListInputProps> = ({
                   setModalVisible(!visible);
                 }
               }}
+              color='#000'
             />
           </View>
           <View style={styles.button}>
@@ -46,6 +58,7 @@ const ListInput: FC<ListInputProps> = ({
                 addListHandler(enteredText);
                 setEnteredText('');
               }}
+              color='#000'
             />
           </View>
         </View>
@@ -61,14 +74,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
     padding: 16,
+    backgroundColor: '#f0f0f0',
   },
   buttonContainer: {
     flexDirection: 'row',
     marginTop: 16,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   textInput: {
     width: '100%',
@@ -76,6 +92,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     padding: 8,
+    color: '#000',
   },
   button: {
     width: '30%',
