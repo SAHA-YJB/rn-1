@@ -14,6 +14,7 @@ type ListType = { text: string; key?: string; id?: string };
 
 export default function App() {
   const [lists, setLists] = useState<ListType[]>([]);
+  const [modalVisible, setModalVisible] = useState(false); // 모달 가시성 상태 추가
 
   const addListHandler = (enteredText: string) => {
     if (enteredText === '') {
@@ -33,7 +34,14 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <ListInput addListHandler={addListHandler} />
+      <Button title='이뤄봐!' onPress={() => setModalVisible(true)} />
+      {modalVisible && (
+        <ListInput
+          visible={modalVisible}
+          setModalVisible={setModalVisible}
+          addListHandler={addListHandler}
+        />
+      )}
       <View style={styles.listContainer}>
         <FlatList
           data={lists}
