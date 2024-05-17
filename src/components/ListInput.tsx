@@ -50,6 +50,7 @@ const ListInput: FC<ListInputProps> = ({
                 }
               }}
               color='#000'
+              accessibilityLabel='취소 버튼'
             />
           </View>
           <View style={styles.button}>
@@ -60,6 +61,7 @@ const ListInput: FC<ListInputProps> = ({
                 setEnteredText('');
               }}
               color='#000'
+              accessibilityLabel='추가 버튼'
             />
           </View>
         </View>
