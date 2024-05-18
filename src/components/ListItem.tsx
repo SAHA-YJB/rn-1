@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+// ListItemProps 인터페이스 정의
+// text: 리스트 항목에 표시될 텍스트
+// id: 리스트 항목의 고유 식별자
+// removeListHandler: 리스트 항목을 제거하는 함수
 interface ListItemProps {
   text: string;
   id: string | number;
@@ -20,6 +24,7 @@ const ListItem: FC<ListItemProps> = ({ text, id, removeListHandler }) => {
       onPress={() => {
         removeListHandler(id.toString());
       }}
+      accessibilityLabel={`Remove item ${text}`}
     >
       <View style={styles.listItem}>
         <Text>{text}</Text>
