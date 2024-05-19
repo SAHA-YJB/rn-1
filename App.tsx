@@ -48,6 +48,14 @@ export default function App() {
           />
         )}
         <View style={styles.listContainer}>
+          {/* 
+            FlatList 컴포넌트는 스크롤 가능한 리스트를 렌더링하는 역할
+            많은 양의 데이터나 동적으로 변하는 데이터를 효율적으로 처리할 수 있도록 설계
+            FlatList는 data 속성으로 전달된 배열을 기반으로 리스트를 생성
+            renderItem 속성은 각 항목을 어떻게 렌더링할지 정의하는 함수
+            keyExtractor 속성은 각 항목의 고유 키를 추출하는 함수
+            alwaysBounceVertical 속성은 리스트가 수직으로 항상 바운스할지 여부를 결정
+          */}
           <FlatList
             data={lists}
             renderItem={(listData) => {
